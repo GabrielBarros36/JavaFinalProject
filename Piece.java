@@ -11,9 +11,10 @@ public class Piece{
     //Every Piece class is initialized with all moves being illegal
     int[][] legalMoves = new int[8][8];
 
+    //True if the piece is White, false if the piece is Black
     boolean isWhite;
 
-    //Initializes the piece at (0,0), with every move being illegal, as a White piece
+    //Initializes the piece at (0,0), as a White piece, with every move being illegal
     Piece(){
 
         isWhite = true;
@@ -27,7 +28,8 @@ public class Piece{
 
     }
 
-    //Arguments are
+    //Arguments are (1 & 2) coordinates piece is initialized at and
+    //(3) whether the piece is White or not
     Piece(int a, int b, boolean c){
 
         isWhite = c;
@@ -55,6 +57,12 @@ public class Piece{
     public int isMoveLegal(int a, int b){
 
         return legalMoves[a][b];
+
+    }
+
+    //******** This is an important one ********
+    //******** Will prob have to be changed often ********
+    public void resetLegalMoves(){
 
     }
 

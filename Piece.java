@@ -2,13 +2,48 @@
 
 public class Piece{
 
+    //Current position of that piece in a board. (0,0) is the top left
+    //corner where the White rook starts while (7,7) is the bottom right
+    //corner where the Black rook starts
     int[] coordinates = new int[2];
 
-    Piece(int a, int b){
-        coordinates[0] = a;
-        coordinates[1] = b;
+    //Each entry is 0 if moving there is illegal, 1 if moving there is legal
+    //Every Piece class is initialized with all moves being illegal
+    int[][] legalMoves = new int[8][8];
+
+    boolean isWhite;
+
+    //Initializes the piece at (0,0), with every move being illegal, as a White piece
+    Piece(){
+
+        isWhite = true;
+
+        coordinates[0] = 0;
+        coordinates[1] = 0;
+
+        for(int i = 0; i < 8; i++)
+            for(int j = 0; j < 8; j++)
+                legalMoves[i][j] = 0;
+
     }
 
+    Piece(int a, int b, boolean c){
 
+        isWhite = c;
+
+        coordinates[0] = a;
+        coordinates[1] = b;
+
+        for(int i = 0; i < 8; i++)
+            for(int j = 0; j < 8; j++)
+                legalMoves[i][j] = 0;
+    }
+
+    public void setCoordinates(int a, int b){
+
+        coordinates[0] = a;
+        coordinates[1] = b;
+
+    }
 
 }

@@ -27,6 +27,7 @@ public class Piece{
 
     }
 
+    //Arguments are
     Piece(int a, int b, boolean c){
 
         isWhite = c;
@@ -39,10 +40,21 @@ public class Piece{
                 legalMoves[i][j] = 0;
     }
 
+    //Changes coordinates of piece.
+    //Does *NOT* check if space is not occupied by friendly piece
+    //Does *NOT* check if move is legal
+    //Does *NOT* change array of legal moves
     public void setCoordinates(int a, int b){
 
         coordinates[0] = a;
         coordinates[1] = b;
+
+    }
+
+    //Returns 1 if move is legal, 0 otherwise
+    public int isMoveLegal(int a, int b){
+
+        return legalMoves[a][b];
 
     }
 

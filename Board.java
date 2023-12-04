@@ -25,9 +25,10 @@ class BoardFrame extends JFrame
    private JLabel squares[][]; //array of squares
    private JPanel menu;
    private JLabel menuTitle;
-   private JButton saveDropdown;
-   private JButton loadDropdown;
+   private JMenu saveDropdown;
+   private JMenu loadDropdown;
    private JLabel playerTurn;
+
 
    public BoardFrame()
    {
@@ -39,8 +40,15 @@ class BoardFrame extends JFrame
 	menu = new JPanel();
 	menu.setLayout(new GridLayout(3,1));
 	menuTitle = new JLabel("Menu");
-	saveDropdown = new JButton("Save");
-	loadDropdown = new JButton("Load");
+	saveDropdown = new JMenu("Save");
+	loadDropdown = new JMenu("Load");
+        for (int i = 1; i < 6; i++)
+        {
+	   String index = Integer.toString(i);
+	   JMenuItem gameIndex = new JMenuItem(index);
+	   saveDropdown.add(gameIndex);
+	   loadDropdown.add(gameIndex);
+        }
 	menu.add(menuTitle);
         menu.add(saveDropdown);
         menu.add(loadDropdown);

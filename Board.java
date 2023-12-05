@@ -3,6 +3,7 @@
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 public class Board extends JFrame
 {
@@ -25,8 +26,8 @@ class BoardFrame extends JFrame
    private JLabel squares[][]; //array of squares
    private JPanel menu;
    private JLabel menuTitle;
-   private JMenu saveDropdown;
-   private JMenu loadDropdown;
+   private JComboBox<String> saveDropdown;
+   private JComboBox<String> loadDropdown;
    private JLabel playerTurn;
 
 
@@ -39,16 +40,20 @@ class BoardFrame extends JFrame
 
 	menu = new JPanel();
 	menu.setLayout(new GridLayout(3,1));
+	menu.setBackground(new Color(110,64,51));	
+	add(menu, BorderLayout.EAST);
 	menuTitle = new JLabel("Menu");
-	saveDropdown = new JMenu("Save");
-	loadDropdown = new JMenu("Load");
-        for (int i = 1; i < 6; i++)
-        {
-	   String index = Integer.toString(i);
-	   JMenuItem gameIndex = new JMenuItem(index);
-	   saveDropdown.add(gameIndex);
-	   loadDropdown.add(gameIndex);
-        }
+
+        String arr[] = {"Game 1","Game 2","Game 3",
+                        "Game 4","Game 5"};
+	saveDropdown = new JComboBox<String>(arr);
+	saveDropdown.setBackground(new Color(110,64,51));
+
+	loadDropdown = new JComboBox<String>(arr);
+	loadDropdown.setBackground(new Color(110,64,51));
+
+
+    
 	menu.add(menuTitle);
         menu.add(saveDropdown);
         menu.add(loadDropdown);
@@ -61,9 +66,9 @@ class BoardFrame extends JFrame
 	   {
 		squares[i][j] = new JLabel();
 		if (count % 2 == 0)
-		    squares[i][j].setBackground(Color.BLACK);
+		    squares[i][j].setBackground(new Color(210,180,140));
 		else
-		    squares[i][j].setBackground(Color.WHITE);
+		    squares[i][j].setBackground(new Color(0,100,0));
 		squares[i][j].setOpaque(true);
 		boardArea.add(squares[i][j]);
 		count++;
@@ -72,17 +77,31 @@ class BoardFrame extends JFrame
 	}
 
 	add(boardArea, BorderLayout.CENTER);
-	add(menu, BorderLayout.EAST);
+
 	add(playerTurn, BorderLayout.SOUTH);
    }
+
+
+
+private class ItemHandler implements ActionListener
+{
+   public void actionPerformed(ActionEvent event)
+   {
+	
+
+   }
+
+
+
+
+
+
 
 
 }
 
 
-
-
-
+}//end class BoardFrame
 
 
 

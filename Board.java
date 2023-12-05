@@ -34,6 +34,8 @@ class BoardFrame extends JFrame
    private int y1;
    private int x2;
    private int y2;
+   private int moveCode;
+   private int turnNum = 1;
 
    public BoardFrame()
    {
@@ -61,7 +63,7 @@ class BoardFrame extends JFrame
 	menu.add(menuTitle);
         menu.add(saveDropdown);
         menu.add(loadDropdown);
-	playerTurn = new JLabel("Player 1's Turn");
+	playerTurn = new JLabel("Player " + turnNum + "'s Turn");
 
 	int count = 1;
 	for (int i=0; i < 8; i++)
@@ -70,9 +72,9 @@ class BoardFrame extends JFrame
 	   {
 		squares[i][j] = new JLabel();
 		if (count % 2 == 0)
-		    squares[i][j].setBackground(new Color(210,180,140));
+		    squares[i][j].setBackground(new Color(223,227,211));
 		else
-		    squares[i][j].setBackground(new Color(0,100,0));
+		    squares[i][j].setBackground(new Color(115,133,62));
 		squares[i][j].setOpaque(true);
 		squares[i][j].addMouseListener(new 				                     MouseClickHandler(i, j));
 		boardArea.add(squares[i][j]);
@@ -111,8 +113,17 @@ private class MouseClickHandler extends MouseAdapter
 	    x2 = row;
 	    y2 = col;
 	    clickCount = 0; 
-	int moveCode = 1000*x1 + 100*y1 + 10*x2 + y2;
-	playerTurn.setText("Move code: " + moveCode);
+	    moveCode = 1000*x1 + 100*y1 + 10*x2 + y2;
+	    if (turnNum == 1)
+	    {
+	       turnNum++;
+	       playerTurn.setText("Player " + turnNum + "'s Turn");	
+	    }
+	    else
+	    {
+	       turnNum = 1;	       
+	       playerTurn.setText("Player " + turnNum + "'s Turn");
+	    }
 	}
    }//end mouseClicked
 

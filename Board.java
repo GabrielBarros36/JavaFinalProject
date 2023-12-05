@@ -29,7 +29,11 @@ class BoardFrame extends JFrame
    private JComboBox<String> saveDropdown;
    private JComboBox<String> loadDropdown;
    private JLabel playerTurn;
-
+   private int clickCount = 0;
+   private int x1;
+   private int y1;
+   private int x2;
+   private int y2;
 
    public BoardFrame()
    {
@@ -70,6 +74,7 @@ class BoardFrame extends JFrame
 		else
 		    squares[i][j].setBackground(new Color(0,100,0));
 		squares[i][j].setOpaque(true);
+		squares[i][j].addMouseListener(new 				                     MouseClickHandler(i, j));
 		boardArea.add(squares[i][j]);
 		count++;
 	   }
@@ -81,27 +86,48 @@ class BoardFrame extends JFrame
 	add(playerTurn, BorderLayout.SOUTH);
    }
 
-
-
-private class ItemHandler implements ActionListener
+private class MouseClickHandler extends MouseAdapter
 {
-   public void actionPerformed(ActionEvent event)
+   private int row;
+   private int col;
+
+   public MouseClickHandler(int i, int j)
    {
+	row = i;
+	col = j;
 	
+   }//end MouseClickHandler
 
-   }
+   public void mouseClicked(MouseEvent event)
+   {
+	clickCount++;
+	if (clickCount == 1)
+	{
+	    x1 = row;
+	    y1 = col;
+	}
+	else
+	{
+	    x2 = row;
+	    y2 = col;
+	    clickCount = 0; 
+	int moveCode = 1000*x1 + 100*y1 + 10*x2 + y2;
+	playerTurn.setText("Move code: " + moveCode);
+	}
+   }//end mouseClicked
 
+}//end mouseClickedHandler class
 
-
-
-
-
-
-
-}
 
 
 }//end class BoardFrame
+
+
+
+
+
+
+
 
 
 

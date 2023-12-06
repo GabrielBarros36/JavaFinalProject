@@ -88,4 +88,8 @@ public class Piece{
         return true;
     }
 
+    int getLegalMoves(int x, int y){
+        return legalMoves[x][y];
+    }
+
 }

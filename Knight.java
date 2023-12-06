@@ -10,6 +10,8 @@ public class Knight extends Piece{
 
     public void refreshLegalMoves(Piece[][] board) {
 
+        resetLegalMoves();
+
         int x = coordinates[0];
         int y = coordinates[1];
 

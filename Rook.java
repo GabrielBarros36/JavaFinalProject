@@ -14,8 +14,12 @@ public class Rook extends Piece{
         for(int north = coordinates[1]-1; north > 0; north--){
 
             //If space is empty or contains an enemy piece
-            if(board[ coordinates[0] ][north].isEmpty() || board[ coordinates[0] ][north].isWhite != isWhite)
+            if(board[ coordinates[0] ][north].isEmpty() )
                 legalMoves[ coordinates[0] ][north] = 1;
+            else if(board[ coordinates[0] ][north].isWhite != isWhite){
+                legalMoves[ coordinates[0] ][north] = 1;
+                break;
+            }
             else
                 break;
         }
@@ -24,8 +28,12 @@ public class Rook extends Piece{
         for(int south = coordinates[1]+1; south < 8; south++){
 
             //If space is empty or contains an enemy piece
-            if(board[ coordinates[0] ][south].isEmpty() || board[ coordinates[0] ][south].isWhite != isWhite)
+            if(board[ coordinates[0] ][south].isEmpty() )
                 legalMoves[ coordinates[0] ][south] = 1;
+            else if(board[ coordinates[0] ][south].isWhite != isWhite){
+                legalMoves[ coordinates[0] ][south] = 1;
+                break;
+            }
             else
                 break;
 
@@ -35,8 +43,12 @@ public class Rook extends Piece{
         for(int west = coordinates[0]-1; west > 0; west--){
 
             //If space is empty or contains an enemy piece
-            if(board[ west ][coordinates[1]].isEmpty() || board[west][ coordinates[1] ].isWhite != isWhite)
+            if(board[ west ][coordinates[1]].isEmpty() )
                 legalMoves[ west ][coordinates[1]] = 1;
+            else if(board[west][ coordinates[1] ].isWhite != isWhite){
+                legalMoves[ west ][coordinates[1]] = 1;
+                break;
+            }
             else
                 break;
 
@@ -46,8 +58,12 @@ public class Rook extends Piece{
         for(int east = coordinates[0]+1; east < 8; east++){
 
             //If space is empty or contains an enemy piece
-            if(board[ east ][coordinates[1]].isEmpty() || board[east][ coordinates[1] ].isWhite != isWhite)
+            if(board[ east ][coordinates[1]].isEmpty() )
                 legalMoves[ east ][coordinates[1]] = 1;
+            else if(board[east][ coordinates[1] ].isWhite != isWhite){
+                legalMoves[ east ][coordinates[1]] = 1;
+                break;
+            }
             else
                 break;
 

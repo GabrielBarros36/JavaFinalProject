@@ -13,6 +13,11 @@ public class Board extends JFrame
 	boardFrame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 	boardFrame.setSize(600, 600);
 	boardFrame.setVisible(true);
+	Game game1 = new Game();
+	Game game2 = new Game();
+	Game game3 = new Game();
+	Game game4 = new Game();
+	Game game5 = new Game();
 
    }
 
@@ -27,7 +32,6 @@ class BoardFrame extends JFrame
    private JPanel menu;
    private JLabel menuTitle;
    private JComboBox<String> saveDropdown;
-   private JComboBox<String> loadDropdown;
    private JLabel playerTurn;
    private int clickCount = 0;
    private int x1;
@@ -36,6 +40,7 @@ class BoardFrame extends JFrame
    private int y2;
    private int moveCode;
    private int turnNum = 1;
+   private Piece pieceArray[][];
 
    public BoardFrame()
    {
@@ -44,25 +49,40 @@ class BoardFrame extends JFrame
 	boardArea = new JPanel();
 	boardArea.setLayout(new GridLayout(8, 8));
 
+	Game game1 = new Game();
+	Game game2 = new Game();
+	Game game3 = new Game();
+	Game game4 = new Game();
+	Game game5 = new Game();
+	Game gameArr[] = {game1, game2, game3, game4, game5};
+
 	menu = new JPanel();
 	menu.setLayout(new GridLayout(3,1));
-	menu.setBackground(new Color(110,64,51));	
+	menu.setBackground(new Color(73,73,73));	
 	add(menu, BorderLayout.EAST);
 	menuTitle = new JLabel("Menu");
 
         String arr[] = {"Game 1","Game 2","Game 3",
                         "Game 4","Game 5"};
 	saveDropdown = new JComboBox<String>(arr);
-	saveDropdown.setBackground(new Color(110,64,51));
+	saveDropdown.setBackground(new Color(73,73,73));
 
-	loadDropdown = new JComboBox<String>(arr);
-	loadDropdown.setBackground(new Color(110,64,51));
-
-
+	saveDropdown.addItemListener(
+	 new ItemListener() // anonymous inner class
+         {
+            // handle JComboBox event
+            public void itemStateChanged( ItemEvent event )
+            {
+               // determine whether checkbox selected
+               if ( event.getStateChange() == ItemEvent.SELECTED )
+                  menuTitle.setText( arr[ 
+                     saveDropdown.getSelectedIndex() ] );
+            } // end method itemStateChanged
+         } // end anonymous inner class
+      ); // end call to addItemListener
     
 	menu.add(menuTitle);
         menu.add(saveDropdown);
-        menu.add(loadDropdown);
 	playerTurn = new JLabel("Player " + turnNum + "'s Turn");
 
 	int count = 1;
@@ -124,6 +144,7 @@ private class MouseClickHandler extends MouseAdapter
 	       turnNum = 1;	       
 	       playerTurn.setText("Player " + turnNum + "'s Turn");
 	    }
+	    System.out.println("Move Code: " + moveCode);
 	}
    }//end mouseClicked
 

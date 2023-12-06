@@ -7,7 +7,7 @@
 4. Run pieceArray[x1][y1].refreshLegalMoves() 
 5. If pieceArray[x1][y1].getLegalMoves(x2, y2) == 1 (if square user moved to is legal) 
 6. Move piece (set (x2,y2) = pieceArray[x1][y1], set (x1,y1) = new Piece() ) 
-7. Check for checkmate, draw 
+7. If piece moved was a pawn, call pieceArray[x2][y2].hasMoved(true)
 
 ## Colby
 - Make Move() function - described above

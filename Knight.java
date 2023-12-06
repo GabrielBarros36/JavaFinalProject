@@ -54,6 +54,7 @@ public class Knight extends Piece{
         if(x < 6 && y > 0)
             if(board[x + 2][y - 1].isEmpty() || board[x + 2][y - 1].isWhite != isWhite)
                 legalMoves[x+2][y-1] = 1;
+
     }
 
 }

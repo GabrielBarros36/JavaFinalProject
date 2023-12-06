@@ -14,6 +14,8 @@ public class Piece{
     //True if the piece is White, false if the piece is Black
     boolean isWhite;
 
+
+
     //Initializes the piece at (0,0), as a White piece, with every move being illegal
     Piece(){
 
@@ -37,9 +39,8 @@ public class Piece{
         coordinates[0] = a;
         coordinates[1] = b;
 
-        for(int i = 0; i < 8; i++)
-            for(int j = 0; j < 8; j++)
-                legalMoves[i][j] = 0;
+        resetLegalMoves();
+
     }
 
     //Changes coordinates of piece.
@@ -53,6 +54,10 @@ public class Piece{
 
     }
 
+    public int[] getCoordinates(){
+        return coordinates;
+    }
+
     //Returns 1 if move is legal, 0 otherwise
     public int isMoveLegal(int a, int b){
 
@@ -60,10 +65,27 @@ public class Piece{
 
     }
 
-    //******** This is an important one ********
-    //******** Will prob have to be changed often ********
     public void resetLegalMoves(){
 
+        for(int i = 0; i < 8; i++)
+            for(int j = 0; j < 8; j++)
+                legalMoves[i][j] = 0;
+    }
+
+    //******** This is an important one ********
+    //******** Will prob have to be changed often ********
+    public void refreshLegalMoves(){
+
+    }
+
+    //Returns true if white, false if black
+    boolean getColor(){
+        return isWhite;
+    }
+
+    //returns true for Piece class, false for every specific piece
+    boolean isEmpty(){
+        return true;
     }
 
 }

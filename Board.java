@@ -59,7 +59,7 @@ class BoardFrame extends JFrame
 	{
 	   for (int j=0; j < 8; j++)
 	   {
-
+		pieceArray[i][j] = game1.GetArray()[i][j];
 	   }
 	}
 	menu = new JPanel();
@@ -81,8 +81,19 @@ class BoardFrame extends JFrame
             {
                // determine whether checkbox selected
                if ( event.getStateChange() == ItemEvent.SELECTED )
-                  menuTitle.setText( arr[ 
+               {   
+		  for (int i=0; i < 8; i++)
+		  {
+	  	    for (int j=0; j < 8; j++)
+	  	    {
+			pieceArray[i][j] = 			gameArr[saveDropdown.getSelectedIndex()].GetArray()[i][j];
+	 	    }
+		  }
+			menuTitle.setText( arr[ 
                      saveDropdown.getSelectedIndex() ] );
+
+
+	       }//end if loop
             } // end method itemStateChanged
          } // end anonymous inner class
       ); // end call to addItemListener

@@ -120,8 +120,6 @@ class BoardFrame extends JFrame
 	   System.out.println("Label size: " + squares[1][1].getSize());
 	   System.out.println("Is label visible? " + squares[1][1].isVisible());
 
-
-
 	   // -----------------------------------------------------------------------------
 
    }

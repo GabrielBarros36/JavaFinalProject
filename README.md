@@ -17,3 +17,4 @@
 ## Gabe
 - Make check/checkmate functions
 - Finish all pieces
+- (Optional) Algebraic Chess Notation Feature

@@ -5,6 +5,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+
+//Main program that creates the board
 public class Board extends JFrame
 {
    public static void main( String args[] )
@@ -13,12 +15,6 @@ public class Board extends JFrame
 	boardFrame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 	boardFrame.setSize(600, 600);
 	boardFrame.setVisible(true);
-	Game game1 = new Game();
-	Game game2 = new Game();
-	Game game3 = new Game();
-	Game game4 = new Game();
-	Game game5 = new Game();
-
    }
 
 
@@ -31,24 +27,27 @@ class BoardFrame extends JFrame
    private JLabel squares[][]; //array of squares
    private JPanel menu;
    private JLabel menuTitle;
-   private JComboBox<String> saveDropdown;
+   private JComboBox<String> saveDropdown;	//the save menu
    private JLabel playerTurn;
    private int clickCount = 0;
    private int x1;
    private int y1;
    private int x2;
    private int y2;
-   private int moveCode;
+   private String moveCode;	//4 digit int that stores x and y of move
    private int turnNum = 1;
-   private Piece pieceArray[][];
+   private Piece pieceArray[][];	//will store the array of pieces
 
    public BoardFrame()
    {
 	super("Chess");
+
+	//create an 8x8 grid of JLabels 
 	squares = new JLabel[8][8];
 	boardArea = new JPanel();
 	boardArea.setLayout(new GridLayout(8, 8));
 
+	//fill an array with 5 games for toggling with the menu
 	Game game1 = new Game();
 	Game game2 = new Game();
 	Game game3 = new Game();
@@ -56,6 +55,13 @@ class BoardFrame extends JFrame
 	Game game5 = new Game();
 	Game gameArr[] = {game1, game2, game3, game4, game5};
 
+	for (int i=0; i < 8; i++)
+	{
+	   for (int j=0; j < 8; j++)
+	   {
+
+	   }
+	}
 	menu = new JPanel();
 	menu.setLayout(new GridLayout(3,1));
 	menu.setBackground(new Color(73,73,73));	
@@ -96,7 +102,7 @@ class BoardFrame extends JFrame
 		else
 		    squares[i][j].setBackground(new Color(115,133,62));
 		squares[i][j].setOpaque(true);
-		squares[i][j].addMouseListener(new 				                     MouseClickHandler(i, j));
+		squares[i][j].addMouseListener(new MouseClickHandler(i, j));
 		boardArea.add(squares[i][j]);
 		count++;
 	   }
@@ -133,7 +139,8 @@ private class MouseClickHandler extends MouseAdapter
 	    x2 = row;
 	    y2 = col;
 	    clickCount = 0; 
-	    moveCode = 1000*x1 + 100*y1 + 10*x2 + y2;
+	    moveCode = Integer.toString(x1) + Integer.toString(y1)
+		     + Integer.toString(x2) + Integer.toString(y2);
 	    if (turnNum == 1)
 	    {
 	       turnNum++;
@@ -151,7 +158,8 @@ private class MouseClickHandler extends MouseAdapter
 }//end mouseClickedHandler class
 
 
-
+public String GetMoveCode()
+{ return moveCode;}
 }//end class BoardFrame
 
 

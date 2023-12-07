@@ -11,15 +11,19 @@ public class King extends Piece{
 
     }
 
+    //NOT FINISHED
     public boolean isCheckmate(Piece[][] board){
 
         if(isChecked(board)){
 
-
-
         }
+
+        return false;
 
     }
 
+    public char getType(){
+        return 'K';
+    }
 
 }

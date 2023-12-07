@@ -66,4 +66,8 @@ public class Bishop extends Piece {
 
     }
 
+    public char getType(){
+        return 'B';
+    }
+
 }

@@ -50,7 +50,9 @@ public class Game
 
    public Piece[][] GetArray ()
    {
+
 	return pieceArray;
+
    }
 
 

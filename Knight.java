@@ -57,4 +57,8 @@ public class Knight extends Piece{
 
     }
 
+    public char getType(){
+        return 'N';
+    }
+
 }

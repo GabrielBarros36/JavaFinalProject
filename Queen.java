@@ -128,4 +128,8 @@ public class Queen extends Piece{
 
     }
 
+    public char getType(){
+        return 'Q';
+    }
+
 }

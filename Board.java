@@ -106,6 +106,24 @@ class BoardFrame extends JFrame
 	add(boardArea, BorderLayout.CENTER);
 
 	add(playerTurn, BorderLayout.SOUTH);
+
+
+	// -----------------------------------------------------------------------------
+
+	   ImageIcon iconLogo = new ImageIcon("Rook.png");
+	   squares[1][1].setIcon(iconLogo);
+	   squares[1][1].revalidate();
+	   squares[1][1].repaint();
+
+	   squares[1][1].setBorder(BorderFactory.createLineBorder(Color.RED)); //only for testing
+
+	   System.out.println("Label size: " + squares[1][1].getSize());
+	   System.out.println("Is label visible? " + squares[1][1].isVisible());
+
+
+
+	   // -----------------------------------------------------------------------------
+
    }
 
 private class MouseClickHandler extends MouseAdapter
@@ -150,21 +168,6 @@ private class MouseClickHandler extends MouseAdapter
 
 }//end mouseClickedHandler class
 
-
-
 }//end class BoardFrame
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

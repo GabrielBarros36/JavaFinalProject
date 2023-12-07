@@ -21,9 +21,7 @@ public class Board extends JFrame
 
    }
 
-
 }
-
 
 class BoardFrame extends JFrame
 {
@@ -102,6 +100,10 @@ class BoardFrame extends JFrame
 	   }
 	   count ++;
 	}
+
+	// Add the Rook image to the first square
+	   ImageIcon rookIcon = new ImageIcon("Rook.png");
+	   squares[0][0].setIcon(rookIcon);
 
 	add(boardArea, BorderLayout.CENTER);
 

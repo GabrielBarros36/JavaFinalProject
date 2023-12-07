@@ -114,6 +114,7 @@ class BoardFrame extends JFrame
 
 	   ImageIcon iconLogo = new ImageIcon("Rook.png");
 	   squares[1][1].setIcon(iconLogo);
+
 	   squares[1][1].revalidate();
 	   squares[1][1].repaint();
 

@@ -46,7 +46,8 @@ class BoardFrame extends JFrame
 	squares = new JLabel[8][8];
 	boardArea = new JPanel();
 	boardArea.setLayout(new GridLayout(8, 8));
-
+	
+	pieceArray = new Piece[8][8];
 	//fill an array with 5 games for toggling with the menu
 	Game game1 = new Game();
 	Game game2 = new Game();
@@ -62,11 +63,12 @@ class BoardFrame extends JFrame
 		pieceArray[i][j] = game1.GetArray()[i][j];
 	   }
 	}
+
 	menu = new JPanel();
 	menu.setLayout(new GridLayout(3,1));
 	menu.setBackground(new Color(73,73,73));	
 	add(menu, BorderLayout.EAST);
-	menuTitle = new JLabel("Menu");
+	menuTitle = new JLabel("Current Game: Game 1");
 
         String arr[] = {"Game 1","Game 2","Game 3",
                         "Game 4","Game 5"};
@@ -89,7 +91,7 @@ class BoardFrame extends JFrame
 			pieceArray[i][j] = 			gameArr[saveDropdown.getSelectedIndex()].GetArray()[i][j];
 	 	    }
 		  }
-			menuTitle.setText( arr[ 
+			menuTitle.setText("Current Game: " + arr[ 
                      saveDropdown.getSelectedIndex() ] );
 
 
@@ -102,7 +104,7 @@ class BoardFrame extends JFrame
         menu.add(saveDropdown);
 	playerTurn = new JLabel("Player " + turnNum + "'s Turn");
 
-	int count = 1;
+	int count = 0;
 	for (int i=0; i < 8; i++)
 	{
 	   for (int j=0; j < 8; j++)
@@ -119,7 +121,7 @@ class BoardFrame extends JFrame
 	   }
 	   count ++;
 	}
-
+	setBoard();
 	add(boardArea, BorderLayout.CENTER);
 
 	add(playerTurn, BorderLayout.SOUTH);
@@ -171,12 +173,27 @@ private class MouseClickHandler extends MouseAdapter
 
 public String GetMoveCode()
 { return moveCode;}
+
+
+
+public void setBoard()
+{
+   for (int i=0; i<8; i++)
+   {
+	for (int j=0; j<8; j++)
+	{
+	   if (pieceArray[i][j] instanceof King && pieceArray[i][j].getColor() == true)
+	   {	
+		squares[i][j].setIcon(new
+		ImageIcon(getClass().getResource("King_White.gif")));	
+	   }
+	}
+   }
+
+
+}
+
 }//end class BoardFrame
-
-
-
-
-
 
 
 

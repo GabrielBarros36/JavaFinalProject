@@ -11,5 +11,15 @@ public class King extends Piece{
 
     }
 
+    public boolean isCheckmate(Piece[][] board){
+
+        if(isChecked(board)){
+
+
+
+        }
+
+    }
+
 
 }

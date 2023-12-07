@@ -22,30 +22,34 @@ public class Game
 	pieceArray = new Piece[8][8];
 /*      the following code should populate the array
 	with the starting chess setup. Just need to know
-	how to initialize the pieces as white/black
+	how to initialize the pieces as white/black */
 
-	pieceArray[0][0] = new Rook(black);
-	pieceArray[0][1] = new Knight(black);
-	pieceArray[0][2] = new Bishop(black);
-	pieceArray[0][3] = new Queen(black);
-	pieceArray[0][4] = new King(black);
-	pieceArray[0][5] = new Bishop(black);
-	pieceArray[0][6] = new Knight(black);
-	pieceArray[0][7] = new Rook(black);
+	pieceArray[0][0] = new Rook(0,0,false);
+	pieceArray[0][1] = new Knight(0,1,false);
+	pieceArray[0][2] = new Bishop(0,2,false);
+	pieceArray[0][3] = new Queen(0,3,false);
+	pieceArray[0][4] = new King(0,4,false);
+	pieceArray[0][5] = new Bishop(0,5,false);
+	pieceArray[0][6] = new Knight(0,6,false);
+	pieceArray[0][7] = new Rook(0,7,false);
 	for (int j=0; j<8; j++)
 	{
-	  pieceArray[1][j] = new Pawn(black);
-	  pieceArray[6][j] = new Pawn(white);
+	  pieceArray[1][j] = new Pawn(1,j,false);
+	  pieceArray[6][j] = new Pawn(6,j,true);
+	  for (int i=2; i<6; i++)
+	  {
+		pieceArray[i][j] = new Piece();
+	  }
 	}
-	pieceArray[0][0] = new Rook(white);
-	pieceArray[0][1] = new Knight(white);
-	pieceArray[0][2] = new Bishop(white);
-	pieceArray[0][3] = new Queen(white);
-	pieceArray[0][4] = new King(white);
-	pieceArray[0][5] = new Bishop(white);
-	pieceArray[0][6] = new Knight(white);
-	pieceArray[0][7] = new Rook(white);
-*/	
+	pieceArray[7][0] = new Rook(7,0,true);
+	pieceArray[7][1] = new Knight(7,1,true);
+	pieceArray[7][2] = new Bishop(7,2,true);
+	pieceArray[7][3] = new Queen(7,3,true);
+	pieceArray[7][4] = new King(7,4,true);
+	pieceArray[7][5] = new Bishop(7,5,true);
+	pieceArray[7][6] = new Knight(7,6,true);
+	pieceArray[7][7] = new Rook(7,7,true);
+	
    }
 
    public Piece[][] GetArray ()

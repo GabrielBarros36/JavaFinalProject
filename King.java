@@ -1,5 +1,9 @@
 public class King extends Piece{
 
+    public King(int a, int b, boolean c) {
+        super(a, b, c);
+    }
+
     public boolean isChecked(Piece[][] board){
 
         for(int i = 0; i < 8; i++)
@@ -11,6 +15,7 @@ public class King extends Piece{
 
     }
 
+    //Only testing for now
     public boolean isCheckmate(Piece[][] board){
 
         if(isChecked(board)){
@@ -18,6 +23,8 @@ public class King extends Piece{
 
 
         }
+
+        return false;
 
     }
 

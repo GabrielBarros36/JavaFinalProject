@@ -182,11 +182,54 @@ public void setBoard()
    {
 	for (int j=0; j<8; j++)
 	{
-	   if (pieceArray[i][j] instanceof King && pieceArray[i][j].getColor() == true)
+	   if (pieceArray[i][j] instanceof King)
 	   {	
-		squares[i][j].setIcon(new
-		ImageIcon(getClass().getResource("King_White.gif")));	
+		if (pieceArray[i][j].getColor() == true)
+		   squares[i][j].setIcon(new ImageIcon(getClass().getResource("King_White.gif")));
+		else
+		   squares[i][j].setIcon(new ImageIcon(getClass().getResource("King_Black.gif")));
 	   }
+	   else if (pieceArray[i][j] instanceof Queen)
+	   {	
+		if (pieceArray[i][j].getColor() == true)
+		   squares[i][j].setIcon(new ImageIcon(getClass().getResource("Queen_White.gif")));
+		else
+		   squares[i][j].setIcon(new ImageIcon(getClass().getResource("Queen_Black.gif")));
+	   }
+	   else if (pieceArray[i][j] instanceof Bishop)
+	   {	
+		if (pieceArray[i][j].getColor() == true)
+		   squares[i][j].setIcon(new ImageIcon(getClass().getResource("Bishop_White.gif")));
+		else
+		   squares[i][j].setIcon(new ImageIcon(getClass().getResource("Bishop_Black.gif")));
+	   }
+	   else if (pieceArray[i][j] instanceof Knight)
+	   {	
+		if (pieceArray[i][j].getColor() == true)
+		   squares[i][j].setIcon(new ImageIcon(getClass().getResource("Knight_White.gif")));
+		else
+		   squares[i][j].setIcon(new ImageIcon(getClass().getResource("Knight_Black.gif")));
+	   }
+	   else if (pieceArray[i][j] instanceof Rook)
+	   {	
+		if (pieceArray[i][j].getColor() == true)
+		   squares[i][j].setIcon(new ImageIcon(getClass().getResource("Rook_White.gif")));
+		else
+		   squares[i][j].setIcon(new ImageIcon(getClass().getResource("Rook_Black.gif")));
+	   }
+	   else if (pieceArray[i][j] instanceof Pawn)
+	   {	
+		if (pieceArray[i][j].getColor() == true)
+		   squares[i][j].setIcon(new ImageIcon(getClass().getResource("Pawn_White.gif")));
+		else
+		   squares[i][j].setIcon(new ImageIcon(getClass().getResource("Pawn_Black.gif")));
+	   }
+	   else
+	   {
+		squares[i][j].setIcon(null);
+	   }
+
+	   
 	}
    }
 

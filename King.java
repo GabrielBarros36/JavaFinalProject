@@ -20,8 +20,6 @@ public class King extends Piece{
 
         if(isChecked(board)){
 
-
-
         }
 
         return false;

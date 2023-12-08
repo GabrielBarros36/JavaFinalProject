@@ -12,7 +12,7 @@ it is white or black's turn
 public class Game
 {
    private Piece pieceArray[][];	//8x8 array of pieces
-   
+   private boolean whitesTurn;
 
    //the Game constructor should initialize the board to 
    //have an array of pieces in normal chess order and 
@@ -20,6 +20,7 @@ public class Game
    public Game()
    {
 	pieceArray = new Piece[8][8];
+	whitesTurn = true;
 /*      the following code should populate the array
 	with the starting chess setup. Just need to know
 	how to initialize the pieces as white/black */
@@ -52,6 +53,7 @@ public class Game
 	
    }
 
+  
    public Piece[][] GetArray ()
    {
 	return pieceArray;

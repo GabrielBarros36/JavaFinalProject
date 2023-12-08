@@ -37,6 +37,7 @@ class BoardFrame extends JFrame
    private String moveCode;	//4 digit int that stores x and y of move
    private int turnNum = 1;
    private Piece pieceArray[][];	//will store the array of pieces
+   private boolean whitesTurn;
 
    public BoardFrame()
    {
@@ -47,6 +48,7 @@ class BoardFrame extends JFrame
 	boardArea = new JPanel();
 	boardArea.setLayout(new GridLayout(8, 8));
 	
+	whitesTurn = true;
 	pieceArray = new Piece[8][8];
 	//fill an array with 5 games for toggling with the menu
 	Game game1 = new Game();
@@ -125,6 +127,8 @@ class BoardFrame extends JFrame
 	add(boardArea, BorderLayout.CENTER);
 
 	add(playerTurn, BorderLayout.SOUTH);
+
+
    }
 
 private class MouseClickHandler extends MouseAdapter
@@ -165,6 +169,7 @@ private class MouseClickHandler extends MouseAdapter
 	       playerTurn.setText("Player " + turnNum + "'s Turn");
 	    }
 	    System.out.println("Move Code: " + moveCode);
+	    Move();
 	}
    }//end mouseClicked
 
@@ -235,6 +240,32 @@ public void setBoard()
 
 
 }
+
+ public void Move()
+   {
+	int x1 = Character.getNumericValue(moveCode.charAt(0));
+	int y1 = Character.getNumericValue(moveCode.charAt(1));
+	int x2 = Character.getNumericValue(moveCode.charAt(2));
+	int y2 = Character.getNumericValue(moveCode.charAt(3));
+	
+	if (pieceArray[x1][y1].isEmpty() == false && pieceArray[x1][y1].getColor() == whitesTurn)
+	{
+
+	  //  pieceArray[x1][y1].refreshLegalMoves();
+	  //  if (pieceArray[x1][y1].getLegalMoves(x2,y2) == 1)
+	    //{	
+		//System.out.println("Running\n");
+		pieceArray[x2][y2] = pieceArray[x1][y1];
+		pieceArray[x1][y1] = new Piece();
+		setBoard();	
+		whitesTurn = !whitesTurn;
+	//    }
+	}
+
+
+
+   }
+
 
 }//end class BoardFrame
 

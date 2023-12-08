@@ -29,6 +29,7 @@ class BoardFrame extends JFrame
    private JLabel menuTitle;
    private JComboBox<String> saveDropdown;	//the save menu
    private JLabel playerTurn;
+   private JPanel southBorder;
    private int clickCount = 0;
    private int x1;
    private int y1;
@@ -76,19 +77,28 @@ class BoardFrame extends JFrame
 	}
 
 
+	addComponentListener(new ComponentAdapter() {
+	public void componentResized(ComponentEvent e){
+	setBoard();}
+	});
+
+
 	menu = new JPanel();
 	menu.setLayout(new GridLayout(3,1));
-	menu.setBackground(new Color(73,73,73));	
+	menu.setBackground(new Color(110,110,110));	
 	add(menu, BorderLayout.EAST);
 	playerTurn = new JLabel();
-	add(playerTurn, BorderLayout.SOUTH);	
+	southBorder = new JPanel();
+	southBorder.setBackground(new Color(110,110,110));
+	add(southBorder, BorderLayout.SOUTH);	
+	southBorder.add(playerTurn);
 	
-	menuTitle = new JLabel("Current Game: Game 1");
+	menuTitle = new JLabel("Saved Games");
 
         String arr[] = {"Game 1","Game 2","Game 3",
                         "Game 4","Game 5"};
 	saveDropdown = new JComboBox<String>(arr);
-	saveDropdown.setBackground(new Color(73,73,73));
+	saveDropdown.setBackground(new Color(110,110,110));
 
 
 //THIS IS THE PART WHERE WE DEAL WITH THE SAVEGAME DROPDOWN
@@ -110,8 +120,6 @@ class BoardFrame extends JFrame
 			pieceArray[i][j] = gameArr[saveDropdown.getSelectedIndex()].GetArray()[i][j];
 	 	    }
 		  }
-			menuTitle.setText("Current Game: " + arr[ 
-                     saveDropdown.getSelectedIndex() ] );
 		     currentGame.SetTurn(whitesTurn);
 		     currentGame = gameArr[saveDropdown.getSelectedIndex()]; 
 		     whitesTurn = currentGame.GetTurn();
@@ -185,7 +193,6 @@ private class MouseClickHandler extends MouseAdapter
 	    moveCode = Integer.toString(x1) + Integer.toString(y1)
 		     + Integer.toString(x2) + Integer.toString(y2);
 
-	    System.out.println("Move Code: " + moveCode);
 	    Move();
 	}
    }//end mouseClicked
@@ -207,6 +214,9 @@ public String GetMoveCode()
 
 public void setBoard()
 {
+   int w = squares[0][0].getWidth() - 5;
+   int h = squares[0][0].getHeight() -5;
+
    for (int i=0; i<8; i++)
    {
 	for (int j=0; j<8; j++)
@@ -214,44 +224,39 @@ public void setBoard()
 	   if (pieceArray[i][j] instanceof Queen)
 	   {	
 		if (pieceArray[i][j].getColor() == true)
-		   squares[i][j].setIcon(new ImageIcon(getClass().getResource("Queen_White.gif")));
+		   squares[i][j].setIcon(resizeIcon(new ImageIcon(getClass().getResource("Queen_White.gif")), w, h));
 		else
-		   squares[i][j].setIcon(new ImageIcon(getClass().getResource("Queen_Black.gif")));
-	   }
+		   squares[i][j].setIcon(resizeIcon(new ImageIcon(getClass().getResource("Queen_Black.gif")), w, h));	   }
 	   else if (pieceArray[i][j] instanceof King)
 	   {	
 		if (pieceArray[i][j].getColor() == true)
-		   squares[i][j].setIcon(new ImageIcon(getClass().getResource("King_White.gif")));
-		else
-		   squares[i][j].setIcon(new ImageIcon(getClass().getResource("King_Black.gif")));
+		   squares[i][j].setIcon(resizeIcon(new ImageIcon(getClass().getResource("King_White.gif")), w, h));			   	else
+		   squares[i][j].setIcon(resizeIcon(new ImageIcon(getClass().getResource("King_Black.gif")), w, h));	   
 	   }
 	   else if (pieceArray[i][j] instanceof Bishop)
 	   {	
 		if (pieceArray[i][j].getColor() == true)
-		   squares[i][j].setIcon(new ImageIcon(getClass().getResource("Bishop_White.gif")));
-		else
-		   squares[i][j].setIcon(new ImageIcon(getClass().getResource("Bishop_Black.gif")));
+		   squares[i][j].setIcon(resizeIcon(new ImageIcon(getClass().getResource("Bishop_White.gif")), w, h));	
+	   	else
+		   squares[i][j].setIcon(resizeIcon(new ImageIcon(getClass().getResource("Bishop_Black.gif")), w, h));	  
 	   }
 	   else if (pieceArray[i][j] instanceof Knight)
 	   {	
 		if (pieceArray[i][j].getColor() == true)
-		   squares[i][j].setIcon(new ImageIcon(getClass().getResource("Knight_White.gif")));
-		else
-		   squares[i][j].setIcon(new ImageIcon(getClass().getResource("Knight_Black.gif")));
+		   squares[i][j].setIcon(resizeIcon(new ImageIcon(getClass().getResource("Knight_White.gif")), w, h));				else
+		   squares[i][j].setIcon(resizeIcon(new ImageIcon(getClass().getResource("Knight_Black.gif")), w, h));
 	   }
 	   else if (pieceArray[i][j] instanceof Rook)
 	   {	
 		if (pieceArray[i][j].getColor() == true)
-		   squares[i][j].setIcon(new ImageIcon(getClass().getResource("Rook_White.gif")));
-		else
-		   squares[i][j].setIcon(new ImageIcon(getClass().getResource("Rook_Black.gif")));
+		   squares[i][j].setIcon(resizeIcon(new ImageIcon(getClass().getResource("Rook_White.gif")), w, h));				else
+		   squares[i][j].setIcon(resizeIcon(new ImageIcon(getClass().getResource("Rook_Black.gif")), w, h));
 	   }
 	   else if (pieceArray[i][j] instanceof Pawn)
 	   {	
 		if (pieceArray[i][j].getColor() == true)
-		   squares[i][j].setIcon(new ImageIcon(getClass().getResource("Pawn_White.gif")));
-		else
-		   squares[i][j].setIcon(new ImageIcon(getClass().getResource("Pawn_Black.gif")));
+		   squares[i][j].setIcon(resizeIcon(new ImageIcon(getClass().getResource("Pawn_White.gif")), w, h));				else
+		   squares[i][j].setIcon(resizeIcon(new ImageIcon(getClass().getResource("Pawn_Black.gif")), w, h));
 	   }
 	   else
 	   {
@@ -308,6 +313,12 @@ public void setBoard()
 
    }
 
+
+    private static ImageIcon resizeIcon(ImageIcon icon, int width, int height) 
+    {
+        Image image = icon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
+        return new ImageIcon(image);
+    }
 
 }//end class BoardFrame
 

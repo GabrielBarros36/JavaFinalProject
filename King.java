@@ -4,6 +4,10 @@ public class King extends Piece{
         super(a, b, c);
     }
 
+    boolean isEmpty() {
+        return false;
+    }
+
     public boolean isChecked(Piece[][] board){
 
         for(int i = 0; i < 8; i++)

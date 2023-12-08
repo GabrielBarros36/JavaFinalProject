@@ -19,6 +19,19 @@ public class King extends Piece{
 
     }
 
+    public void refreshLegalMoves(Piece[][] board) {
+
+        int y = coordinates[0];
+        int x = coordinates[1];
+
+        //Up
+        if(y > 0)
+            if(board[coordinates[0]][y-1].isEmpty() || board[coordinates[0]][y-1].isWhite != isWhite)
+                legalMoves[coordinates[0]][y-1] = 1;
+
+    }
+
+
     //Only testing for now
     public boolean isCheckmate(Piece[][] board){
 

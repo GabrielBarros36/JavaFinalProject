@@ -50,7 +50,19 @@ public class Game
 	pieceArray[7][5] = new Bishop(7,5,true);
 	pieceArray[7][6] = new Knight(7,6,true);
 	pieceArray[7][7] = new Rook(7,7,true);
-	
+
+
+	//Generates legal move array for every piece
+	   for(int x = 0; x < 8; x++)
+		   for(int y = 0; y < 8; y++)
+			   pieceArray[x][y].refreshLegalMoves(pieceArray);
+
+	/*Populate middle of the board with Piece() objects - that is, empty spots*/
+	//for(int y = 2; y < 5; y++)
+	//	for(int x = 0; x < 7; x++)
+	//		pieceArray[y][x] = new Piece(y,x,false);
+
+
    }
 
   

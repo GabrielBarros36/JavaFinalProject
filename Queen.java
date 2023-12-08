@@ -15,7 +15,7 @@ public class Queen extends Piece{
         //********** CHECKING DIAGONALS **********
 
         //Checks path up and to the right
-        for (int x = coordinates[0] + 1, y = coordinates[1] - 1; x < 8 && y > 0; x++, y--) {
+        for (int x = coordinates[0] + 1, y = coordinates[1] - 1; x < 8 && y > -1; x++, y--) {
             if (board[x][y].isEmpty())
                 legalMoves[x][y] = 1;
             else if (board[x][y].isWhite != isWhite) {
@@ -28,7 +28,7 @@ public class Queen extends Piece{
         }
 
         //Checks path up and to the left
-        for (int x = coordinates[0] - 1, y = coordinates[1] - 1; x > 0 && y > 0; x--, y--) {
+        for (int x = coordinates[0] - 1, y = coordinates[1] - 1; x > -1 && y > -1; x--, y--) {
             if (board[x][y].isEmpty())
                 legalMoves[x][y] = 1;
             else if (board[x][y].isWhite != isWhite) {
@@ -54,7 +54,7 @@ public class Queen extends Piece{
         }
 
         //Checks path down and to the left
-        for (int x = coordinates[0] - 1, y = coordinates[1] + 1; x > 0 && y < 8; x--, y++) {
+        for (int x = coordinates[0] - 1, y = coordinates[1] + 1; x > -1 && y < 8; x--, y++) {
             if (board[x][y].isEmpty())
                 legalMoves[x][y] = 1;
             else if (board[x][y].isWhite != isWhite) {
@@ -68,7 +68,7 @@ public class Queen extends Piece{
 
         //********** CHECKING UP AND DOWN **********
         //Checks path above the queen
-        for(int north = coordinates[1]-1; north > 0; north--){
+        for(int north = coordinates[1]-1; north > -1; north--){
 
             //If space is empty or contains an enemy piece
             if(board[ coordinates[0] ][north].isEmpty() )
@@ -97,7 +97,7 @@ public class Queen extends Piece{
         }
 
         //Checks path to the left of the queen
-        for(int west = coordinates[0]-1; west > 0; west--){
+        for(int west = coordinates[0]-1; west > -1; west--){
 
             //If space is empty or contains an enemy piece
             if(board[ west ][coordinates[1]].isEmpty() )

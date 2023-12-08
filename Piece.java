@@ -7,6 +7,8 @@ public class Piece{
     //corner where the Black rook starts
     int[] coordinates = new int[2];
 
+
+
     //Each entry is 0 if moving there is illegal, 1 if moving there is legal
     //Every Piece class is initialized with all moves being illegal
     int[][] legalMoves = new int[8][8];
@@ -40,6 +42,7 @@ public class Piece{
         coordinates[1] = b;
 
         resetLegalMoves();
+        //refreshLegalMoves();
 
     }
 
@@ -74,7 +77,9 @@ public class Piece{
 
     //******** This is an important one ********
     //******** Will prob have to be changed often ********
-    public void refreshLegalMoves(){
+    public void refreshLegalMoves(Piece[][] board){
+
+        System.out.println("Empty piece - no legal moves");
 
     }
 

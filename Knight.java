@@ -1,7 +1,12 @@
 public class Knight extends Piece{
 
     public Knight(int a, int b, boolean c) {
+
         super(a, b, c);
+
+        //System.out.println("Created knight at (" + a + "," + b + ")");
+
+
     }
 
     boolean isEmpty() {
@@ -9,6 +14,9 @@ public class Knight extends Piece{
     }
 
     public void refreshLegalMoves(Piece[][] board) {
+
+        System.out.println("Current coordinates are: (" + coordinates[0] + "," + coordinates[1] + ")");
+        System.out.println("Refreshed legal moves");
 
         resetLegalMoves();
 
@@ -45,12 +53,12 @@ public class Knight extends Piece{
             if(board[x - 2][y + 1].isEmpty() || board[x - 2][y + 1].isWhite != isWhite)
                 legalMoves[x-2][y+1] = 1;
 
-        //2 right 1 up
-        if(x < 6 && y > 0)
+        //2 right 1 down
+        if(x < 6 && y > 0 && y < 7)
             if(board[x + 2][y + 1].isEmpty() || board[x + 2][y + 1].isWhite != isWhite)
                 legalMoves[x+2][y+1] = 1;
 
-        //2 right 1 down
+        //2 right 1 up
         if(x < 6 && y > 0)
             if(board[x + 2][y - 1].isEmpty() || board[x + 2][y - 1].isWhite != isWhite)
                 legalMoves[x+2][y-1] = 1;

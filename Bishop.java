@@ -13,7 +13,7 @@ public class Bishop extends Piece {
         resetLegalMoves();
 
         //Checks path up and to the right
-        for (int x = coordinates[0] + 1, y = coordinates[1] - 1; x < 8 && y > 0; x++, y--) {
+        for (int x = coordinates[0] + 1, y = coordinates[1] - 1; x < 8 && y > -1; x++, y--) {
             if (board[x][y].isEmpty())
                 legalMoves[x][y] = 1;
             else if (board[x][y].isWhite != isWhite) {
@@ -26,7 +26,7 @@ public class Bishop extends Piece {
         }
 
         //Checks path up and to the left
-        for (int x = coordinates[0] - 1, y = coordinates[1] - 1; x > 0 && y > 0; x--, y--) {
+        for (int x = coordinates[0] - 1, y = coordinates[1] - 1; x > -1 && y > -1; x--, y--) {
             if (board[x][y].isEmpty())
                 legalMoves[x][y] = 1;
             else if (board[x][y].isWhite != isWhite) {
@@ -52,7 +52,7 @@ public class Bishop extends Piece {
         }
 
         //Checks path down and to the left
-        for (int x = coordinates[0] - 1, y = coordinates[1] + 1; x > 0 && y < 8; x--, y++) {
+        for (int x = coordinates[0] - 1, y = coordinates[1] + 1; x > -1 && y < 8; x--, y++) {
             if (board[x][y].isEmpty())
                 legalMoves[x][y] = 1;
             else if (board[x][y].isWhite != isWhite) {

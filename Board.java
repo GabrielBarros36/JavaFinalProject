@@ -2,8 +2,10 @@
 
 
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Arrays;
 
 
 //Main program that creates the board
@@ -287,6 +289,9 @@ public void setBoard()
 
  public void Move()
    {
+
+	System.out.println("Move function called");
+
 	int x1 = Character.getNumericValue(moveCode.charAt(0));
 	int y1 = Character.getNumericValue(moveCode.charAt(1));
 	int x2 = Character.getNumericValue(moveCode.charAt(2));
@@ -295,21 +300,56 @@ public void setBoard()
 	if (pieceArray[x1][y1].isEmpty() == false && pieceArray[x1][y1].getColor() == whitesTurn)
 	{
 
-	//    pieceArray[x1][y1].refreshLegalMoves();
-	//    if (pieceArray[x1][y1].getLegalMoves(x2,y2) == 1)
-	//    {	
-		//System.out.println("Running\n");
+		//COMMENT THIS OUT AGAIN LATER
+
+	    pieceArray[x1][y1].refreshLegalMoves(pieceArray);
+
+		//System.out.println(Arrays.deepToString(pieceArray[x1][y1].getLegalMovesArray()));
+		for(int i = 0; i < 8; i++) {
+			for (int j = 0; j < 8; j++)
+				System.out.print(pieceArray[x1][y1].getLegalMoves(i,j) + " ");
+			System.out.print("\n");
+		}
+
+		System.out.print("\n");System.out.print("\n");
+
+		for(int i = 0; i < 8; i++) {
+			for (int j = 0; j < 8; j++)
+				if( i == x1 && j == y1)
+					System.out.print("x ");
+				else
+					System.out.print(0 + " ");
+			System.out.print("\n");
+		}
+		System.out.print("\n");System.out.print("\n");
+
+	    if (pieceArray[x1][y1].getLegalMoves(x2,y2) == 1)
+	    {
+		System.out.println("Running\n");
+
+		// COMMENT THIS OUT AGAIN LATER
+
 		pieceArray[x2][y2] = pieceArray[x1][y1];
+
+		pieceArray[x2][y2].setCoordinates(x2,y2);
+
 		pieceArray[x1][y1] = new Piece();
 		whitesTurn = !whitesTurn;
 		currentGame.SetTurn(!currentGame.GetTurn());
 		setBoard();
-	//    }
+	    }
 
 	}
 
 
+		System.out.print("Empty spots: " );
+	   for(int i =0; i < 8; i++) {
 
+		   System.out.println("");
+		   for (int j = 0; j < 8; j++)
+			   System.out.print(pieceArray[i][j].isEmpty() + " ");
+	   }
+	   System.out.println("\n");
 
    }
 

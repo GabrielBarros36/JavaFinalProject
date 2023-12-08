@@ -55,9 +55,15 @@ public class Game
 
   
    public Piece[][] GetArray ()
-   {
-	return pieceArray;
-   }
+   { return pieceArray; }
 
+   public void SetArray(int i, int j, Piece p)
+   {  pieceArray[i][j] = p; }
+
+   public void SetTurn(boolean w)
+   {  whitesTurn = w; }
+
+   public boolean GetTurn()
+   {  return whitesTurn; }
 
 }

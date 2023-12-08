@@ -38,6 +38,11 @@ class BoardFrame extends JFrame
    private int turnNum = 1;
    private Piece pieceArray[][];	//will store the array of pieces
    private boolean whitesTurn;
+   private Game gameArr[] = new Game[5];
+   private Game currentGame;
+
+
+//THIS IS THE BOARDFRAME CONSTRUCTOR. IT HAS A LOT OF STUFF IN IT. OH WELL.
 
    public BoardFrame()
    {
@@ -47,7 +52,7 @@ class BoardFrame extends JFrame
 	squares = new JLabel[8][8];
 	boardArea = new JPanel();
 	boardArea.setLayout(new GridLayout(8, 8));
-	
+
 	whitesTurn = true;
 	pieceArray = new Piece[8][8];
 	//fill an array with 5 games for toggling with the menu
@@ -56,8 +61,12 @@ class BoardFrame extends JFrame
 	Game game3 = new Game();
 	Game game4 = new Game();
 	Game game5 = new Game();
-	Game gameArr[] = {game1, game2, game3, game4, game5};
-
+	gameArr[0] = game1;
+	gameArr[1] = game2;
+	gameArr[2] = game3;
+	gameArr[3] = game4;
+	gameArr[4] = game5;
+	currentGame = game1;
 	for (int i=0; i < 8; i++)
 	{
 	   for (int j=0; j < 8; j++)
@@ -66,16 +75,23 @@ class BoardFrame extends JFrame
 	   }
 	}
 
+
 	menu = new JPanel();
 	menu.setLayout(new GridLayout(3,1));
 	menu.setBackground(new Color(73,73,73));	
 	add(menu, BorderLayout.EAST);
+	playerTurn = new JLabel();
+	add(playerTurn, BorderLayout.SOUTH);	
+	
 	menuTitle = new JLabel("Current Game: Game 1");
 
         String arr[] = {"Game 1","Game 2","Game 3",
                         "Game 4","Game 5"};
 	saveDropdown = new JComboBox<String>(arr);
 	saveDropdown.setBackground(new Color(73,73,73));
+
+
+//THIS IS THE PART WHERE WE DEAL WITH THE SAVEGAME DROPDOWN
 
 	saveDropdown.addItemListener(
 	 new ItemListener() // anonymous inner class
@@ -90,12 +106,16 @@ class BoardFrame extends JFrame
 		  {
 	  	    for (int j=0; j < 8; j++)
 	  	    {
-			pieceArray[i][j] = 			gameArr[saveDropdown.getSelectedIndex()].GetArray()[i][j];
+			
+			pieceArray[i][j] = gameArr[saveDropdown.getSelectedIndex()].GetArray()[i][j];
 	 	    }
 		  }
 			menuTitle.setText("Current Game: " + arr[ 
                      saveDropdown.getSelectedIndex() ] );
-
+		     currentGame.SetTurn(whitesTurn);
+		     currentGame = gameArr[saveDropdown.getSelectedIndex()]; 
+		     whitesTurn = currentGame.GetTurn();
+		     setBoard();
 
 	       }//end if loop
             } // end method itemStateChanged
@@ -104,7 +124,9 @@ class BoardFrame extends JFrame
     
 	menu.add(menuTitle);
         menu.add(saveDropdown);
-	playerTurn = new JLabel("Player " + turnNum + "'s Turn");
+
+
+//THIS IS PAINTING THE SQUARES BLACK AND WHITE
 
 	int count = 0;
 	for (int i=0; i < 8; i++)
@@ -126,10 +148,14 @@ class BoardFrame extends JFrame
 	setBoard();
 	add(boardArea, BorderLayout.CENTER);
 
-	add(playerTurn, BorderLayout.SOUTH);
+
 
 
    }
+
+
+
+//THIS IS A CLASS TO HANDLE WHEN WE CLICK BOXES. IT RETURNS A STRING WITH THE MOVE CODE
 
 private class MouseClickHandler extends MouseAdapter
 {
@@ -158,16 +184,7 @@ private class MouseClickHandler extends MouseAdapter
 	    clickCount = 0; 
 	    moveCode = Integer.toString(x1) + Integer.toString(y1)
 		     + Integer.toString(x2) + Integer.toString(y2);
-	    if (turnNum == 1)
-	    {
-	       turnNum++;
-	       playerTurn.setText("Player " + turnNum + "'s Turn");	
-	    }
-	    else
-	    {
-	       turnNum = 1;	       
-	       playerTurn.setText("Player " + turnNum + "'s Turn");
-	    }
+
 	    System.out.println("Move Code: " + moveCode);
 	    Move();
 	}
@@ -176,10 +193,17 @@ private class MouseClickHandler extends MouseAdapter
 }//end mouseClickedHandler class
 
 
+
+//THIS IS A GETTER CLASS TO RETURN THE MOVE CODE
+
 public String GetMoveCode()
 { return moveCode;}
 
 
+
+
+
+//THIS IS A HELPER FUNCTION TO SET THE BOARD TO HOW IT SHOULD BE
 
 public void setBoard()
 {
@@ -187,19 +211,19 @@ public void setBoard()
    {
 	for (int j=0; j<8; j++)
 	{
-	   if (pieceArray[i][j] instanceof King)
-	   {	
-		if (pieceArray[i][j].getColor() == true)
-		   squares[i][j].setIcon(new ImageIcon(getClass().getResource("King_White.gif")));
-		else
-		   squares[i][j].setIcon(new ImageIcon(getClass().getResource("King_Black.gif")));
-	   }
-	   else if (pieceArray[i][j] instanceof Queen)
+	   if (pieceArray[i][j] instanceof Queen)
 	   {	
 		if (pieceArray[i][j].getColor() == true)
 		   squares[i][j].setIcon(new ImageIcon(getClass().getResource("Queen_White.gif")));
 		else
 		   squares[i][j].setIcon(new ImageIcon(getClass().getResource("Queen_Black.gif")));
+	   }
+	   else if (pieceArray[i][j] instanceof King)
+	   {	
+		if (pieceArray[i][j].getColor() == true)
+		   squares[i][j].setIcon(new ImageIcon(getClass().getResource("King_White.gif")));
+		else
+		   squares[i][j].setIcon(new ImageIcon(getClass().getResource("King_Black.gif")));
 	   }
 	   else if (pieceArray[i][j] instanceof Bishop)
 	   {	
@@ -233,13 +257,28 @@ public void setBoard()
 	   {
 		squares[i][j].setIcon(null);
 	   }
-
 	   
+	//now reset the game array appropriately
+	for (int n=0; n<8; n++)
+	   for (int m=0; m<8; m++)
+	      currentGame.SetArray(m,n,pieceArray[m][n]);
+
+	if (currentGame.GetTurn() == true)
+	   playerTurn.setText("White's Turn");
+	else
+	   playerTurn.setText("Black's Turn");
+	
+
 	}
    }
 
 
 }
+
+
+
+
+//THIS IS A HELPER FUNCTION TO MOVE THE PIECES. IT DOESNT WORK VERY WELL YET
 
  public void Move()
    {
@@ -251,16 +290,19 @@ public void setBoard()
 	if (pieceArray[x1][y1].isEmpty() == false && pieceArray[x1][y1].getColor() == whitesTurn)
 	{
 
-	  //  pieceArray[x1][y1].refreshLegalMoves();
-	  //  if (pieceArray[x1][y1].getLegalMoves(x2,y2) == 1)
-	    //{	
+	//    pieceArray[x1][y1].refreshLegalMoves();
+	//    if (pieceArray[x1][y1].getLegalMoves(x2,y2) == 1)
+	//    {	
 		//System.out.println("Running\n");
 		pieceArray[x2][y2] = pieceArray[x1][y1];
 		pieceArray[x1][y1] = new Piece();
-		setBoard();	
 		whitesTurn = !whitesTurn;
+		currentGame.SetTurn(!currentGame.GetTurn());
+		setBoard();
 	//    }
+
 	}
+
 
 
 

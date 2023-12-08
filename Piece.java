@@ -92,4 +92,8 @@ public class Piece{
         return legalMoves[x][y];
     }
 
+    int[][] getLegalMovesArray(){
+        return legalMoves;
+    }
+
 }

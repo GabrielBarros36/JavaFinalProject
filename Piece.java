@@ -101,4 +101,9 @@ public class Piece{
         return legalMoves;
     }
 
+    public boolean isChecked(Piece[][] board){
+        System.out.println("Ran isChecked from Piece()");
+        return false;
+    }
+
 }

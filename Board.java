@@ -270,10 +270,18 @@ public void setBoard()
 	   for (int m=0; m<8; m++)
 	      currentGame.SetArray(m,n,pieceArray[m][n]);
 
-	if (currentGame.GetTurn() == true)
-	   playerTurn.setText("White's Turn");
-	else
-	   playerTurn.setText("Black's Turn");
+	if (currentGame.GetTurn() == true) {
+		if(currentGame.whiteKingChecked)
+			playerTurn.setText("White's Turn - White King Checked");
+		else
+			playerTurn.setText("White's Turn");
+	}
+	else {
+		if(currentGame.blackKingChecked)
+			playerTurn.setText("Black's Turn - Black King Checked");
+		else
+			playerTurn.setText("Black's Turn");
+	}
 	
 
 	}
@@ -330,10 +338,50 @@ public void setBoard()
 		// COMMENT THIS OUT AGAIN LATER
 
 		pieceArray[x2][y2] = pieceArray[x1][y1];
-
 		pieceArray[x2][y2].setCoordinates(x2,y2);
-
 		pieceArray[x1][y1] = new Piece();
+		pieceArray[x2][y2].refreshLegalMoves(pieceArray);
+
+		// ------- CHECKING FOR CHECKS ---------
+
+		//If piece moved is a king
+		if(pieceArray[x2][y2] instanceof King){
+
+			if(pieceArray[x2][y2].isWhite) {
+
+				currentGame.whiteKingPos[0] = x2;
+				currentGame.whiteKingPos[1] = y2;
+
+			}
+			else{
+
+				currentGame.blackKingPos[0] = x2;
+				currentGame.blackKingPos[1] = y2;
+
+			}
+		}
+
+		//if(whitesTurn) {
+			if (pieceArray[currentGame.whiteKingPos[0]][currentGame.whiteKingPos[1]].isChecked(pieceArray))
+				currentGame.whiteKingChecked = true;
+			else
+				currentGame.whiteKingChecked = false;
+		//}
+		//else{
+			if (pieceArray[currentGame.blackKingPos[0]][currentGame.blackKingPos[1]].isChecked(pieceArray))
+				currentGame.blackKingChecked = true;
+			else
+				currentGame.blackKingChecked = false;
+		//}
+
+		System.out.println("W king checked: " + currentGame.whiteKingChecked + " Black king checked: " + currentGame.blackKingChecked);
+
+			// ------- CHECKING FOR CHECKS ---------
+
+
+
+
+
 		whitesTurn = !whitesTurn;
 		currentGame.SetTurn(!currentGame.GetTurn());
 		setBoard();
@@ -341,6 +389,8 @@ public void setBoard()
 
 	}
 
+
+	/* JUST FOR TESTING
 
 		System.out.print("Empty spots: " );
 	   for(int i =0; i < 8; i++) {
@@ -350,6 +400,7 @@ public void setBoard()
 			   System.out.print(pieceArray[i][j].isEmpty() + " ");
 	   }
 	   System.out.println("\n");
+	*/
 
    }
 

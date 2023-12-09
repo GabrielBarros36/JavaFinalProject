@@ -17,9 +17,8 @@
 ## Gabe
 - Enable castling
 - Make check/checkmate functions
-- Finish all pieces
 - (Optional) Algebraic Chess Notation Feature
-- 
+
 ## Observations for Move()
 - Don't let piece move to the same spot it's already in 
 - Check for illegal moves

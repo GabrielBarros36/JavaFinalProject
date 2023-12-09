@@ -21,8 +21,6 @@ public class Pawn extends Piece{
         int x = coordinates[0];
         int y = coordinates[1];
 
-        System.out.println("Pawn coordinates are: " + x + " " + y);
-
         if(isWhite){
 
             //Detects if there's a piece in the left diagonal

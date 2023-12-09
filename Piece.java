@@ -79,8 +79,6 @@ public class Piece{
     //******** Will prob have to be changed often ********
     public void refreshLegalMoves(Piece[][] board){
 
-        System.out.println("Empty piece - no legal moves");
-
     }
 
     //Returns true if white, false if black
@@ -102,7 +100,6 @@ public class Piece{
     }
 
     public boolean isChecked(Piece[][] board){
-        System.out.println("Ran isChecked from Piece()");
         return false;
     }
 

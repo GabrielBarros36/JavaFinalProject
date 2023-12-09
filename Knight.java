@@ -15,9 +15,6 @@ public class Knight extends Piece{
 
     public void refreshLegalMoves(Piece[][] board) {
 
-        System.out.println("Current coordinates are: (" + coordinates[0] + "," + coordinates[1] + ")");
-        System.out.println("Refreshed legal moves");
-
         resetLegalMoves();
 
         int x = coordinates[0];

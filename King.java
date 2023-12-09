@@ -26,7 +26,7 @@ public class King extends Piece{
         int y = coordinates[0]; //Vertical
         int x = coordinates[1]; //Horizontal
 
-        System.out.println("King pos: " + x + " " + y);
+        //System.out.println("King pos: " + x + " " + y);
 
         //legalMoves[4][7] = 1;
 

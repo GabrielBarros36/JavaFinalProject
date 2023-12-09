@@ -298,7 +298,7 @@ public void setBoard()
  public void Move()
    {
 
-	System.out.println("Move function called");
+	//System.out.println("Move function called");
 
 	int x1 = Character.getNumericValue(moveCode.charAt(0));
 	int y1 = Character.getNumericValue(moveCode.charAt(1));
@@ -313,6 +313,8 @@ public void setBoard()
 	    pieceArray[x1][y1].refreshLegalMoves(pieceArray);
 
 		//System.out.println(Arrays.deepToString(pieceArray[x1][y1].getLegalMovesArray()));
+
+		/*
 		for(int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++)
 				System.out.print(pieceArray[x1][y1].getLegalMoves(i,j) + " ");
@@ -331,11 +333,11 @@ public void setBoard()
 		}
 		System.out.print("\n");System.out.print("\n");
 
+
+
+		 */
 	    if (pieceArray[x1][y1].getLegalMoves(x2,y2) == 1)
 	    {
-		System.out.println("Running\n");
-
-		// COMMENT THIS OUT AGAIN LATER
 
 		pieceArray[x2][y2] = pieceArray[x1][y1];
 		pieceArray[x2][y2].setCoordinates(x2,y2);
@@ -361,25 +363,17 @@ public void setBoard()
 			}
 		}
 
-		//if(whitesTurn) {
 			if (pieceArray[currentGame.whiteKingPos[0]][currentGame.whiteKingPos[1]].isChecked(pieceArray))
 				currentGame.whiteKingChecked = true;
 			else
 				currentGame.whiteKingChecked = false;
-		//}
-		//else{
+
 			if (pieceArray[currentGame.blackKingPos[0]][currentGame.blackKingPos[1]].isChecked(pieceArray))
 				currentGame.blackKingChecked = true;
 			else
 				currentGame.blackKingChecked = false;
-		//}
-
-		System.out.println("W king checked: " + currentGame.whiteKingChecked + " Black king checked: " + currentGame.blackKingChecked);
 
 			// ------- CHECKING FOR CHECKS ---------
-
-
-
 
 
 		whitesTurn = !whitesTurn;
@@ -390,17 +384,7 @@ public void setBoard()
 	}
 
 
-	/* JUST FOR TESTING
 
-		System.out.print("Empty spots: " );
-	   for(int i =0; i < 8; i++) {
-
-		   System.out.println("");
-		   for (int j = 0; j < 8; j++)
-			   System.out.print(pieceArray[i][j].isEmpty() + " ");
-	   }
-	   System.out.println("\n");
-	*/
 
    }
 
